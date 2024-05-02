@@ -64,11 +64,5 @@ async function main() {
   console.log('Data seeded successfully!');
 }
 
-main()
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+await main();
+await prisma.$disconnect();
