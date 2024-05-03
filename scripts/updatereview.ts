@@ -29,7 +29,7 @@ const updateReview = async () => {
                     where: { id: review.id },
                     data: {
                         content: "I changed my mind, it's not that good.",
-                        score: 3 
+                        score: 6
                     }
                 });
 

@@ -58,25 +58,25 @@ async function main() {
     data: [
       {
         content: 'Mind-bending!',
-        score: 5,
+        score: 9,
         userId: user1.id,
         movieId: movie1.id,
       },
       {
         content: 'A gripping ethical dilemma.',
-        score: 5,
+        score: 8,
         userId: user2.id,
         movieId: movie2.id,
       },
       {
         content: 'Amazing series!',
-        score: 5,
+        score: 7,
         userId: user1.id,
         seriesId: series1.id,
       },
       {
         content: 'One of the best!',
-        score: 5,
+        score: 10,
         userId: user2.id,
         gameId: game1.id,
       },
