@@ -19,6 +19,23 @@ model Movie {
   id          Int      @id @default(autoincrement())
   title       String
   description String?
+  genre       String[]   
+  reviews     Review[]
+}
+
+model Series {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  genre       String[]     
+  reviews     Review[]
+}
+
+model Game {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  genre       String[]    
   reviews     Review[]
 }
 
@@ -30,4 +47,8 @@ model Review {
   userId    Int
   movie     Movie?   @relation(fields: [movieId], references: [id])
   movieId   Int?
+  series    Series?  @relation(fields: [seriesId], references: [id])
+  seriesId  Int?
+  game      Game?    @relation(fields: [gameId], references: [id])
+  gameId    Int?
 }

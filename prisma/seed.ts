@@ -9,18 +9,6 @@ async function main() {
       name: 'Carla Fernández',
       email: 'carla.fernandez@gmail.com',
       password: '1234',
-      reviews: {
-        create: [
-          {
-            content: 'Great movie!',
-            score: 5,
-          },
-          {
-            content: 'Could be better...',
-            score: 3,
-          },
-        ],
-      },
     },
   });
 
@@ -29,40 +17,74 @@ async function main() {
       name: 'Olivia Rodrigo',
       email: 'olivia.rodrigo3@gmail.com',
       password: '5678',
-      reviews: {
-        create: [
-          {
-            content: 'Awesome film!',
-            score: 4,
-          },
-        ],
-      },
     },
   });
+
 
   const movie1 = await prisma.movie.create({
     data: {
       title: 'Inception',
       description: 'A science fiction action film about dream infiltration.',
-      reviews: {
-        create: [
-          {
-            content: 'Mind-bending!',
-            score: 5,
-            userId: user1.id,
-          },
-          {
-            content: 'A masterpiece!',
-            score: 5,
-            userId: user2.id,
-          },
-        ],
-      },
+      genre: ['Sci-Fi', 'Thriller']
     },
   });
 
-  console.log('Data seeded successfully!');
+  const movie2 = await prisma.movie.create({
+    data: {
+      title: 'Poor things',
+      description: 'A mysterious woman challenges societal norms and scientific ethics in a divided future society',
+      genre: ['Sci-Fi', 'Drama' ]
+    },
+  });
+
+  const series1 = await prisma.series.create({
+    data: {
+      title: 'Breaking Bad',
+      description: 'A high school chemistry teacher turned into a methamphetamine manufacturer.',
+      genre: ['Drama']
+    },
+  });
+
+  const game1 = await prisma.game.create({
+    data: {
+      title: "Baldur's Gate 3",
+      description: 'A group of adventurers start a journey through a world on the brink of chaos in an epic role-playing video game.',
+      genre: ['RPG', 'Role', 'Adventure'],
+    },
+  });
+
+
+  await prisma.review.createMany({
+    data: [
+      {
+        content: 'Mind-bending!',
+        score: 5,
+        userId: user1.id,
+        movieId: movie1.id,
+      },
+      {
+        content: 'A gripping ethical dilemma.',
+        score: 5,
+        userId: user2.id,
+        movieId: movie2.id,
+      },
+      {
+        content: 'Amazing series!',
+        score: 5,
+        userId: user1.id,
+        seriesId: series1.id,
+      },
+      {
+        content: 'One of the best!',
+        score: 5,
+        userId: user2.id,
+        gameId: game1.id,
+      },
+    ],
+  });
+
+  console.log('Data seeded successfully! :)');
 }
 
-await main();
-await prisma.$disconnect();
+await main()
+
